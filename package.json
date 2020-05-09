@@ -1,16 +1,15 @@
 {
-  "name": "webpacktest",
+  "name": "webpack-learn",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "buildd": "webpack --mode production --config ./webpack/webpack.config.dev.js",
     "dev": "node ./webpack/dev.js",
     "build:test": "cross-env NODE_ENV=test  node ./webpack/test.js",
     "build:prod": "cross-env NODE_ENV=prod  node ./webpack/prod.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "shuai.cheng.tj@gmail.com",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^4.0.0",
     "config": "^3.3.1",
