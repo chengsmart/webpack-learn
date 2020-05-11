@@ -5,6 +5,6 @@ import 'raf/polyfill';
 // import { setSession } from '@util/storage';
 // import { getAppInfo } from '@util/env';
 
-import Index from '../index/index.tsx';
+import Home from '../home';
 
-Index();
+Home();

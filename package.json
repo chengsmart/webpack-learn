@@ -11,6 +11,9 @@
   "author": "shuai.cheng.tj@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/parser": "^2.31.0",
     "chalk": "^4.0.0",
     "config": "^3.3.1",
     "connected-react-router": "^6.4.0",
@@ -23,7 +26,6 @@
     "raf": "^3.4.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-hot-loader": "^4.12.14",
     "rimraf": "^3.0.2",
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-dev-server": "^3.7.2"
@@ -45,6 +47,7 @@
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "postcss-loader": "^3.0.0",
+    "react-hot-loader": "^4.12.14",
     "style-loader": "^0.23.1",
     "ts-loader": "^4.1.0",
     "typescript": "^3.3.4000",
