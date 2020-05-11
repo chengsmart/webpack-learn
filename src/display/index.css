@@ -1,0 +1,14 @@
+body {
+  background: url('./img/timg.jpeg');
+}
+
+h1 {
+  color: blue;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+  background: url('./img/32.png') no-repeat;
+  background-size: 100% 100%;
+}
