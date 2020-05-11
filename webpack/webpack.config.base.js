@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html的插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
 const webpack = require('webpack');
-// const config = require('config');
-// const envName = config.get('envName');
+const config = require('config');
+const envName = config.get('envName');
 
 const webpackConf = {
   mode: 'development',
@@ -21,7 +21,7 @@ const webpackConf = {
     filename: '[name].[hash].js',
   },
   resolve: {
-    extensions: ['.js', '.css', '.json'],
+    extensions: ['.js', '.json', '.tsx', '.ts', '.css', '.less'],
     alias: {}, //配置别名可以加快webpack查找模块的速度
   },
   module: {
@@ -80,7 +80,7 @@ const webpackConf = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      // envName: JSON.stringify(envName),
+      ENV_NAME: JSON.stringify(envName),
     }),
     new webpack.ProvidePlugin({
       $: 'jquery',
