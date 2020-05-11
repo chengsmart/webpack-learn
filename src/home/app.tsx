@@ -17,10 +17,10 @@ import './index.less';
 //   </Provider>
 // );
 const App = () => {
-  const [env, setEnv] = useState(envName);
+  const [env, setEnv] = useState(ENV_NAME);
 
   useEffect(() => {
-    console.log(envName);
+    console.log(ENV_NAME);
   }, []);
 
   return (
