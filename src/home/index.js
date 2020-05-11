@@ -5,6 +5,6 @@ import 'raf/polyfill';
 // import { setSession } from '@util/storage';
 // import { getAppInfo } from '@util/env';
 
-import Home from '../home';
+import Home from './home';
 
 Home();
