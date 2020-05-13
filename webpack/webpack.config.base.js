@@ -3,7 +3,6 @@ const glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 复制静态资源的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空打包目录的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html的插件
-// const ExtractTextWebapckPlugin = require('extract-text-webpack-plugin'); //CSS文件单独提取出来
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
 const webpack = require('webpack');
@@ -73,14 +72,19 @@ const webpackConf = {
     rules: [{
         test: /.js$/,
         use: [{
-          loader: 'babel-loader',
-        }, ],
+            loader: 'thread-loader',
+            options: {
+              workers: 3
+            }
+          },
+          'babel-loader'
+        ],
       },
       {
         test: /\.tsx?$/,
         exclude: [
           path.join(projectRoot, 'node_modules'),
-          path.join(projectRoot, 'src', 'dll'),
+          // path.join(projectRoot, 'src', 'dll'),
         ],
         include: path.join(projectRoot, 'src'),
         use: [{
@@ -92,7 +96,6 @@ const webpackConf = {
       },
       {
         test: /\.css$/,
-
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
         include: path.join(projectRoot, 'src'), //限制范围，提高打包速度
         exclude: /node_modules/,
@@ -104,7 +107,7 @@ const webpackConf = {
         exclude: /node_modules/,
       },
       {
-        //file-loader 解决css等文件中引入图片路径的问题
+        // file-loader 解决css等文件中引入图片路径的问题
         // url-loader 当图片较小的时候会把图片BASE64编码，大于limit参数的时候还是使用file-loader 进行拷贝
         test: /\.(png|jpg|jpeg|gif|svg)/,
         use: {
@@ -124,8 +127,8 @@ const webpackConf = {
       // 全局变量
       ENV_NAME: JSON.stringify(envName),
     }),
+    // 设定全局引入
     new webpack.ProvidePlugin({
-      // 设定全局引入
       $: 'jquery',
       jQuery: 'jquery',
       'window.$': 'jquery',

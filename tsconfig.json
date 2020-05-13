@@ -21,7 +21,7 @@
         "skipLibCheck": true,
         "strictNullChecks": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/scripts/globals.d.ts", "src/reacthome/index.js"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/scripts/globals.d.ts", "src/home/index.js"],
     "exclude": ["node_modules"],
     "quotemark": [true, "single"]
 }
