@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader/root';
 // import BaseRouter from '@routes/index';
 // import history from '@routes/history';
 // import configureStore from '../store';
+
 import './index.less';
 
 // const store = configureStore();

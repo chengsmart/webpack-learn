@@ -5,6 +5,6 @@ const WebpackBundleAnalyzer = require('webpack-bundle-analyzer')
 
 let webpackConfig = merge(baseWebpackConfig, {
   mode: 'development',
-  plugins: [new WebpackBundleAnalyzer()],
+  plugins: [new WebpackBundleAnalyzer()], // 打包体积展示工具
 });
 module.exports = webpackConfig;

@@ -3,7 +3,7 @@ module.exports = {
   port: 9999,
   indexPage: 'home.html',
   openPage: 'home.html',
-  hostname: 's03test.10101111.com', // 将要替换的域名
-  domain: '//s03test.10101111.com/', // 替换后域名
-  apiDomain: '//mtest.10101111.com/',
+  hostname: 'cdntest.test.com', // 将要替换的域名
+  domain: '//cdntest.test.com/', // 替换后域名
+  apiDomain: '//mtest.test.com/',
 };
