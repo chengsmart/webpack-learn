@@ -7,5 +7,5 @@ module.exports = {
   openPage: 'home.html',
   hostname: `${ip}:${PORT}/`, // combo 将要替换的域名
   domain: `//${ip}:${PORT}/`, // 替换后域名
-  apiDomain: '//m.10101111.com/',
+  apiDomain: '//m.test.com/',
 };
