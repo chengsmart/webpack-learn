@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin'); // 复制静态资源�
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空打包目录的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html的插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
-const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
+const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const webpack = require('webpack');
 const config = require('config');
 const envName = config.get('envName');
@@ -61,7 +61,7 @@ const webpackConf = {
   output: {
     publicPath: '', //这里要放的是静态资源CDN的地址
     path: path.resolve(projectRoot, 'dist'),
-    filename: '[name]_[hash].js',
+    filename: '[name]_[chunkhash:8].js'
   },
   resolve: {
     extensions: ['.js', '.json', '.tsx', '.ts', '.css', '.less'],
@@ -74,10 +74,10 @@ const webpackConf = {
         use: [{
             loader: 'thread-loader',
             options: {
-              workers: 3
-            }
+              workers: 3,
+            },
           },
-          'babel-loader'
+          'babel-loader',
         ],
       },
       {
@@ -138,6 +138,9 @@ const webpackConf = {
       /* 'hljs': 'highlight.js' */
     }),
 
+    new webpack.DllReferencePlugin({
+      manifest: require('../src/dll/library-manifest.json'),
+    }),
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css',
     }),
