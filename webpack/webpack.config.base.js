@@ -118,15 +118,41 @@ const webpackConf = {
         // file-loader 解决css等文件中引入图片路径的问题
         // url-loader 当图片较小的时候会把图片BASE64编码，大于limit参数的时候还是使用file-loader 进行拷贝
         test: /\.(png|jpg|jpeg|gif|svg)/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            name: 'img/[name].[hash:7].[ext]',
-            publicPath: '../',
-            // outputPath: path.join(projectRoot, 'images'), // 图片输出的路径
-            limit: 10 * 1024,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: 'img/[name].[hash:7].[ext]',
+              publicPath: '../',
+              // outputPath: path.join(projectRoot, 'images'), // 图片输出的路径
+              limit: 10 * 1024,
+            },
           },
-        },
+          // {
+          //   loader: 'image-webpack-loader', // 图片压缩
+          //   options: {
+          //     mozjpeg: {
+          //       progressive: true,
+          //       quality: 65,
+          //     },
+          //     // optipng.enabled: false will disable optipng
+          //     optipng: {
+          //       enabled: false,
+          //     },
+          //     pngquant: {
+          //       quality: [0.65, 0.9],
+          //       speed: 4,
+          //     },
+          //     gifsicle: {
+          //       interlaced: false,
+          //     },
+          //     // the webp option will enable WEBP
+          //     webp: {
+          //       quality: 75,
+          //     },
+          //   },
+          // },
+        ],
       },
     ],
   },
