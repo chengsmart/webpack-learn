@@ -1,20 +1,19 @@
 const path = require('path');
-const fs = require('fs');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const webpackConf = require('./webpack.config.dev');
-const config = require('config');
-const confPort = config.get('port');
-const indexPage = config.get('indexPage');
-const openPage = config.get('openPage');
+// const config = require('config');
+// const confPort = config.get('port');
+// const indexPage = config.get('indexPage');
+// const openPage = config.get('openPage');
 
 const devSerOptions = {
   quiet: true,
   contentBase: path.join(process.cwd(), 'dist'), //静态文件根目录
-  port: confPort, // 端口
+  port: 8888, // 端口
   host: require('ip').address(),
-  index: indexPage,
-  openPage: openPage,
+  index: 'home.html',
+  openPage: 'home.html',
   open: true,
   hot: true,
   overlay: true,
@@ -28,6 +27,6 @@ const devSerOptions = {
 };
 
 const server = new WebpackDevServer(webpack(webpackConf), devSerOptions);
-server.listen(confPort, '0.0.0.0', () => {
+server.listen(8888, '0.0.0.0', () => {
   // console.log(chalk.green(`Starting server on http:${domain}`));
 });
