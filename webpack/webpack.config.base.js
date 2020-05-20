@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html的插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 缓存加速
-const PurgecssPlugin = require('purgecss-webpack-plugin'); // 清理没有用到的css代码
+// const PurgecssPlugin = require('purgecss-webpack-plugin'); // 清理没有用到的css代码【注意，该插件可能导致npm包样式缺失】
 const webpack = require('webpack');
 // const config = require('config');
 // const envName = config.get('envName');
@@ -54,10 +54,7 @@ const setMPA = () => {
   };
 };
 
-const {
-  entry,
-  htmlWebpackPlugins
-} = setMPA();
+const { entry, htmlWebpackPlugins } = setMPA();
 
 const webpackConf = {
   mode: 'development',
@@ -75,9 +72,11 @@ const webpackConf = {
   },
   module: {
     // 多个loader是有顺序要求的，从右往左写，因为转换的时候是从右往左转换的
-    rules: [{
+    rules: [
+      {
         test: /.js$/,
-        use: [{
+        use: [
+          {
             loader: 'thread-loader',
             options: {
               workers: 3,
@@ -94,12 +93,14 @@ const webpackConf = {
           // path.join(projectRoot, 'src', 'dll'),
         ],
         include: path.join(projectRoot, 'src'),
-        use: [{
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
           },
-        }, ],
+        ],
       },
       {
         test: /\.css$/,
@@ -117,7 +118,8 @@ const webpackConf = {
         // file-loader 解决css等文件中引入图片路径的问题
         // url-loader 当图片较小的时候会把图片BASE64编码，大于limit参数的时候还是使用file-loader 进行拷贝
         test: /\.(png|jpg|jpeg|gif|svg)/,
-        use: [{
+        use: [
+          {
             loader: 'url-loader',
             options: {
               name: 'img/[name].[hash:7].[ext]',
@@ -173,11 +175,11 @@ const webpackConf = {
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash:8].css',
     }),
-    new PurgecssPlugin({
-      paths: glob.sync(`${PATHS.src}/**/*`, {
-        nodir: true
-      }),
-    }),
+    // new PurgecssPlugin({
+    //   paths: glob.sync(`${PATHS.src}/**/*`, {
+    //     nodir: true
+    //   }),
+    // }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [path.join(projectRoot, 'dist')],
     }),
