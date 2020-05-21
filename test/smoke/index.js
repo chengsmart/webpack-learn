@@ -8,8 +8,8 @@ const mocha = new Mocha({
 process.chdir(path.join(__dirname, 'template'));
 
 rimraf('./dist', () => {
-  const prodConf = require('../../webpack/webpack.config.prod');
-  webpack(prodConf, (err, stats) => {
+  const buildConf = require('../../webpack/config.build');
+  webpack(buildConf, (err, stats) => {
     if (err) {
       console.error(err);
       process.exit(2);
