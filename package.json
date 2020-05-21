@@ -1,8 +1,8 @@
 {
   "name": "@chengsmart/webpack-learn",
   "version": "1.0.0",
-  "description": "",
-  "main": "lib/dev.js",
+  "description": "react cli",
+  "main": "./lib/dev.js",
   "scripts": {
     "dev": "node ./webpack/dev.js",
     "build:test": "cross-env NODE_ENV=test  node ./webpack/test.js",
