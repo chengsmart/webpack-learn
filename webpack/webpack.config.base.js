@@ -54,7 +54,10 @@ const setMPA = () => {
   };
 };
 
-const { entry, htmlWebpackPlugins } = setMPA();
+const {
+  entry,
+  htmlWebpackPlugins
+} = setMPA();
 
 const webpackConf = {
   mode: 'development',
@@ -72,11 +75,9 @@ const webpackConf = {
   },
   module: {
     // 多个loader是有顺序要求的，从右往左写，因为转换的时候是从右往左转换的
-    rules: [
-      {
+    rules: [{
         test: /.js$/,
-        use: [
-          {
+        use: [{
             loader: 'thread-loader',
             options: {
               workers: 3,
@@ -93,24 +94,70 @@ const webpackConf = {
           // path.join(projectRoot, 'src', 'dll'),
         ],
         include: path.join(projectRoot, 'src'),
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        }, ],
+      },
+      {
+        test: /^((?!\.module).)*css$/, // 非css module文件
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: 'ts-loader',
+            loader: 'css-loader',
             options: {
-              transpileOnly: true,
+              sourceMap: true
             },
           },
         ],
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
         include: path.join(projectRoot, 'src'), //限制范围，提高打包速度
         exclude: /node_modules/,
       },
       {
-        test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        test: /\.module\.css$/, // css module文件
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+            },
+          },
+        ],
+        include: path.join(projectRoot, 'src'), //限制范围，提高打包速度
+        exclude: /node_modules/,
+      },
+      {
+        test: /^((?!\.module).)*less$/, // 非css module的less文件
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          'less-loader',
+        ],
+        include: path.join(projectRoot, 'src'),
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.module\.less$/, // css module的less文件
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+            },
+          },
+          'less-loader',
+        ],
         include: path.join(projectRoot, 'src'),
         exclude: /node_modules/,
       },
@@ -118,8 +165,7 @@ const webpackConf = {
         // file-loader 解决css等文件中引入图片路径的问题
         // url-loader 当图片较小的时候会把图片BASE64编码，大于limit参数的时候还是使用file-loader 进行拷贝
         test: /\.(png|jpg|jpeg|gif|svg)/,
-        use: [
-          {
+        use: [{
             loader: 'url-loader',
             options: {
               name: 'img/[name].[hash:7].[ext]',
