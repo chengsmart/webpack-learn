@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const webpackConf = require('./webpack.config.prod');
+const webpackConf = require('./config.build');
 const chalk = require('chalk');
 
 webpack(webpackConf, (err, stats) => {
