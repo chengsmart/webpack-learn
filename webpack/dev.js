@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConf = require('./webpack.config.dev');
+const getDevConfig = require('./app.config.dev.js');
 // const config = require('config');
 // const confPort = config.get('port');
 // const indexPage = config.get('indexPage');
@@ -26,7 +26,7 @@ const devSerOptions = {
 
 };
 
-const server = new WebpackDevServer(webpack(webpackConf), devSerOptions);
+const server = new WebpackDevServer(webpack(getDevConfig({}).toConfig()), devSerOptions);
 server.listen(8888, '0.0.0.0', () => {
   // console.log(chalk.green(`Starting server on http:${domain}`));
 });

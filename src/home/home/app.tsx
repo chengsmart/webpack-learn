@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader/root';
 // import history from '@routes/history';
 // import configureStore from '../store';
 
-import './index.less';
+// import './index.less';
 
 // const store = configureStore();
 
@@ -18,10 +18,10 @@ import './index.less';
 //   </Provider>
 // );
 const App = () => {
-  const [env, setEnv] = useState(ENV_NAME);
+  const [env, setEnv] = useState('需要本地配置config');
 
   useEffect(() => {
-    console.log(ENV_NAME);
+    console.log('需要本地配置config');
   }, []);
 
   return (
