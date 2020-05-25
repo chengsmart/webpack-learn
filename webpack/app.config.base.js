@@ -8,7 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 缓存加速
 const conf = require('./app.config.default');
-const tsImportPluginFactory = require('ts-import-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production';
 
 const getConfig = (options) => {
   const cwd = options.cwd || process.cwd();
@@ -140,7 +141,7 @@ const getConfig = (options) => {
     .use('css-loader')
     .loader(require.resolve('css-loader'))
     .options({
-      sourceMap: true,
+      sourceMap: devMode,
     })
 
   config.module
@@ -156,7 +157,7 @@ const getConfig = (options) => {
     .use('css-loader')
     .loader(require.resolve('css-loader'))
     .options({
-      sourceMap: true,
+      sourceMap: devMode,
       modules: true,
     });
 
@@ -173,7 +174,7 @@ const getConfig = (options) => {
     .use('css-loader')
     .loader(require.resolve('css-loader'))
     .options({
-      sourceMap: true,
+      sourceMap: devMode,
     })
     .end()
     .use('less-loader')
@@ -192,7 +193,7 @@ const getConfig = (options) => {
     .use('css-loader')
     .loader(require.resolve('css-loader'))
     .options({
-      sourceMap: true,
+      sourceMap: devMode,
       modules: true,
     })
     .end()
