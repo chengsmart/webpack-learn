@@ -1,34 +1,27 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "allowSyntheticDefaultImports": true,
-    "target": "esnext",
+    "target": "ES5",
     "downlevelIteration": true,
     "importHelpers": true,
-    "sourceMap": false,
-    "module": "commonjs",
+    "sourceMap": true,
+    "module": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true, // 解决编译后default undefind 问题
-    //var __importDefault = (this && this.__importDefault) || function (mod) {
-    //return (mod && mod.__esModule) ? mod : { "default": mod };
-    //};
-
-    "jsx": "preserve",
-    // "allowJs": true,
+    "jsx": "react",
+    "allowJs": true,
     "lib": ["dom", "es2015", "es2016", "es2017", "esnext"],
     "forceConsistentCasingInFileNames": false,
     "experimentalDecorators": true,
-    "noImplicitAny": false, //在表达式和声明上有隐含的 any 类型时报错。
+    "noImplicitAny": true, //在表达式和声明上有隐含的 any 类型时报错。
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "outDir": "./lib"
+    "strictNullChecks": true
   },
-
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "lib"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/scripts/globals.d.ts", "src/home/index.js"],
+  "exclude": ["node_modules"],
+  "quotemark": [true, "single"]
 }

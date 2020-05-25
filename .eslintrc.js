@@ -51,12 +51,17 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'no-param-reassign': [
       2,
-      { props: true, ignorePropertyModificationsFor: ['draft'] },
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['draft']
+      },
     ],
     'import/prefer-default-export': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'no-script-url': 0,
-    'prettier/prettier': [1, { singleQuote: true }],
+    'prettier/prettier': [1, {
+      singleQuote: true
+    }],
     'import/extensions': 0,
     '@typescript-eslint/no-var-requires': 1,
     yoda: 0,
@@ -64,7 +69,9 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/explicit-member-accessibility': 0,
     'import/no-extraneous-dependencies': 0,
-    'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+    'react/jsx-filename-extension': ['error', {
+      extensions: ['.jsx', '.tsx']
+    }],
     'react/display-name': 0,
   },
   globals: {

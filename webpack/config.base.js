@@ -76,7 +76,7 @@ const webpackConf = {
   module: {
     // 多个loader是有顺序要求的，从右往左写，因为转换的时候是从右往左转换的
     rules: [{
-        test: /.js$/,
+        test: /\.js$/,
         use: [{
             loader: 'thread-loader',
             options: {
