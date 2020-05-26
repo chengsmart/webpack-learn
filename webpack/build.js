@@ -1,9 +1,12 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
+const merge = require('webpack-merge');
 
 const getBuildConfig = require('./config.build');
+const defaultConfig = require('./config.default');
 
-webpack(getBuildConfig({}).toConfig(), (err, stats) => {
+const config = merge(getBuildConfig().toConfig(), defaultConfig.confWebpack);
+webpack(config, (err, stats) => {
   if (err) throw err;
   process.stdout.write(
     `${stats.toString({
