@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const chalk = require('chalk');
+const merge = require('webpack-merge');
 
 const getBuildConfig = require('./config.build');
 const defaultConfig = require('./config.default');
