@@ -17,6 +17,7 @@
   "dependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
+    "antd-mobile": "^2.3.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-import": "^1.13.0",
     "chalk": "^4.0.0",

@@ -29,23 +29,21 @@ const getConfig = (options) => {
 
       config.entry(pageName).add(entryFile);
 
-      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [
-        {
-          inlineSource: '.css$',
-          template: path.join(cwd, `./src/${pageName}/index.html`),
-          filename: `${pageName}.html`,
-          chunks: ['vendors', pageName],
-          inject: true,
-          minify: {
-            html5: true,
-            collapseWhitespace: true,
-            preserveLineBreaks: false,
-            minifyCSS: true,
-            minifyJS: true,
-            removeComments: false,
-          },
+      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [{
+        inlineSource: '.css$',
+        template: path.join(cwd, `./src/${pageName}/index.html`),
+        filename: `${pageName}.html`,
+        chunks: ['vendors', pageName],
+        inject: true,
+        minify: {
+          html5: true,
+          collapseWhitespace: true,
+          preserveLineBreaks: false,
+          minifyCSS: true,
+          minifyJS: true,
+          removeComments: false,
         },
-      ]);
+      }, ]);
     });
   };
   setMPA();
@@ -212,19 +210,13 @@ const getConfig = (options) => {
     });
 
   // plugin
-  console.log(conf);
-
   config.plugin('providePlugin').use(webpack.ProvidePlugin, [conf.provideDefs]);
-  config.plugin('MiniCssExtractPlugin').use(MiniCssExtractPlugin, [
-    {
-      filename: '[name]_[contenthash:8].css',
-    },
-  ]);
-  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [
-    {
-      cleanOnceBeforeBuildPatterns: [path.join(cwd, 'dist')],
-    },
-  ]);
+  config.plugin('MiniCssExtractPlugin').use(MiniCssExtractPlugin, [{
+    filename: '[name]_[contenthash:8].css',
+  }, ]);
+  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [{
+    cleanOnceBeforeBuildPatterns: [path.join(cwd, 'dist')],
+  }, ]);
   config.plugin('HardSourceWebpackPlugin').use(HardSourceWebpackPlugin, []);
   config
     .plugin('friendlyErrorsWebpackPlugin')
