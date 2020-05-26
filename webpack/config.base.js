@@ -27,23 +27,25 @@ const getConfig = (options) => {
       const match = entryFile.match(/src\/(.*)\/index\.js/);
       const pageName = match && match[1];
 
-      config.entry(pageName).add(entryFile)
+      config.entry(pageName).add(entryFile);
 
-      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [{
-        inlineSource: '.css$',
-        template: path.join(cwd, `./src/${pageName}/index.html`),
-        filename: `${pageName}.html`,
-        chunks: ['vendors', pageName],
-        inject: true,
-        minify: {
-          html5: true,
-          collapseWhitespace: true,
-          preserveLineBreaks: false,
-          minifyCSS: true,
-          minifyJS: true,
-          removeComments: false,
+      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [
+        {
+          inlineSource: '.css$',
+          template: path.join(cwd, `./src/${pageName}/index.html`),
+          filename: `${pageName}.html`,
+          chunks: ['vendors', pageName],
+          inject: true,
+          minify: {
+            html5: true,
+            collapseWhitespace: true,
+            preserveLineBreaks: false,
+            minifyCSS: true,
+            minifyJS: true,
+            removeComments: false,
+          },
         },
-      }, ])
+      ]);
     });
   };
   setMPA();
@@ -106,7 +108,6 @@ const getConfig = (options) => {
       transpileOnly: true,
     });
 
-
   // config.module
   // .rule('less')
   // .test(/\.(less|css)$/)
@@ -126,9 +127,6 @@ const getConfig = (options) => {
   // .use('less-loader')
   // .loader(require.resolve('less-loader'))
 
-
-
-
   config.module
     .rule('css')
     .test(/^((?!\.module).)*css$/)
@@ -143,7 +141,7 @@ const getConfig = (options) => {
     .loader(require.resolve('css-loader'))
     .options({
       sourceMap: devMode,
-    })
+    });
 
   config.module
     .rule('module-css')
@@ -214,15 +212,19 @@ const getConfig = (options) => {
     });
 
   // plugin
-  config
-    .plugin('.providePlugin')
-    .use(webpack.ProvidePlugin, [conf.provideDefs]);
-  config.plugin('MiniCssExtractPlugin').use(MiniCssExtractPlugin, [{
-    filename: '[name]_[contenthash:8].css',
-  }, ]);
-  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [{
-    cleanOnceBeforeBuildPatterns: [path.join(cwd, 'dist')],
-  }, ]);
+  console.log(conf);
+
+  config.plugin('providePlugin').use(webpack.ProvidePlugin, [conf.provideDefs]);
+  config.plugin('MiniCssExtractPlugin').use(MiniCssExtractPlugin, [
+    {
+      filename: '[name]_[contenthash:8].css',
+    },
+  ]);
+  config.plugin('CleanWebpackPlugin').use(CleanWebpackPlugin, [
+    {
+      cleanOnceBeforeBuildPatterns: [path.join(cwd, 'dist')],
+    },
+  ]);
   config.plugin('HardSourceWebpackPlugin').use(HardSourceWebpackPlugin, []);
   config
     .plugin('friendlyErrorsWebpackPlugin')
