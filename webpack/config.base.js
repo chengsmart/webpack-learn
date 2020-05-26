@@ -27,7 +27,9 @@ const getConfig = (options) => {
       const match = entryFile.match(/src\/(.*)\/index\.js/);
       const pageName = match && match[1];
 
-      config.plugin('HtmlWebpackPlugin').use(HtmlWebpackPlugin, [{
+      config.entry(pageName).add(entryFile)
+
+      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [{
         inlineSource: '.css$',
         template: path.join(cwd, `./src/${pageName}/index.html`),
         filename: `${pageName}.html`,
@@ -42,13 +44,9 @@ const getConfig = (options) => {
           removeComments: false,
         },
       }, ])
-      config.entry(pageName).add(entryFile)
     });
   };
   setMPA();
-  console.log(config.toConfig().plugins);
-  console.log(config.toConfig().plugins[0]);
-
   config.end();
 
   // resolve
