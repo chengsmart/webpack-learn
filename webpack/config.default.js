@@ -1,15 +1,3 @@
-// import {
-//   resolve
-// } from 'path';
-// import {
-//   existsSync
-// } from 'fs';
-// import {
-//   DefinePlugin
-// } from 'webpack';
-const {
-  DefinePlugin
-} = require('webpack');
 const {
   existsSync
 } = require('fs');

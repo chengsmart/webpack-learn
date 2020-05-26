@@ -7,8 +7,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空打包目�
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 缓存加速
-const conf = require('./app.config.default');
 
+const conf = require('./config.default');
 const devMode = process.env.NODE_ENV !== 'production';
 
 const getConfig = (options) => {
@@ -27,8 +27,9 @@ const getConfig = (options) => {
       const match = entryFile.match(/src\/(.*)\/index\.js/);
       const pageName = match && match[1];
 
-      config.entry(pageName).add(entryFile).end();
-      config.plugin('HtmlWebpackPlugin').use(HtmlWebpackPlugin, [{
+      config.entry(pageName).add(entryFile)
+
+      config.plugin(`HtmlWebpackPlugin-${pageName}`).use(HtmlWebpackPlugin, [{
         inlineSource: '.css$',
         template: path.join(cwd, `./src/${pageName}/index.html`),
         filename: `${pageName}.html`,
@@ -42,7 +43,7 @@ const getConfig = (options) => {
           minifyJS: true,
           removeComments: false,
         },
-      }, ]);
+      }, ])
     });
   };
   setMPA();

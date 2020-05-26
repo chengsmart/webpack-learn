@@ -1,6 +1,7 @@
 const webpack = require('webpack');
-const getBuildConfig = require('./app.config.build');
 const chalk = require('chalk');
+
+const getBuildConfig = require('./config.build');
 
 webpack(getBuildConfig({}).toConfig(), (err, stats) => {
   if (err) throw err;

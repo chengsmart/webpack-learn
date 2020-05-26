@@ -12,6 +12,6 @@
 
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
- plugins: [new WebpackBundleAnalyzer()],
+plugins: [new WebpackBundleAnalyzer()],
 
 ```
