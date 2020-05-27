@@ -9,7 +9,7 @@ webpack 构建、优化学习实践，从零构建 webpack 打包项目实践。
 webpack 简单打包：
 该部分代码参照
 
-> [tag v1.0.0](https://github.com/chengsmart/webpack-learn/releases/tag/v1.0.0)  
+> [tag v1.0.1](https://github.com/chengsmart/webpack-learn/releases/tag/v1.0.1)  
 > [base-webpack-build 分支](https://github.com/chengsmart/webpack-learn/tree/base-webpack-build)
 
 ## 封装 cli（进行中）
