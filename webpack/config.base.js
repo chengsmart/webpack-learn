@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html的插件
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清空打包目录的插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // extract-text-webpack-plugin 废弃后的版本 CSS文件单独提取出来
-const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); //CSS文件单独提取出来
+const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin'); // webpack构建友好提示
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin'); // 缓存加速
 
 const conf = require('./config.default');
